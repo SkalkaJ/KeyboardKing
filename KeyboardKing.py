@@ -1,7 +1,8 @@
-# program: reakcnidoba.py - hra na měření reakční doby
-# autor: Jakub Skalka 8.E <skalkaj@jirovcovka.net>
-#        Kryštof Maxera 8.E <maxerak@jirovcovka.net>
-#        Barbora Bočkayová 8.E <bockayovab@jirovcovka.net>
+### Hra Keyboard King,která testuje rychlost a přesnost stisku kláves. Po spuštění hry se na obrazovce zobrazí 6 obdélníků,
+# každý s jednou klávesou (S, D, F, J, K, L). Obdélníky se náhodně rozsvítí a hráč musí stisknout odpovídající klávesu, než kruh dosáhne
+# spodní části obrazovky. Po každém kole se rychlost zvyšuje a hráč musí stisknout správnou klávesu rychleji.
+# Hra má 5 kol a po skončení se zobrazí celkové skóre.
+# autor: Kryštof Maxera, 8.E, <maxerak@jirovcovka.net>/ Jakub Skalka, 8.E, <skalkaj@jirovcovka.net>/ Barbora Bočkayová, 8.E, <bockayovab@jirovcovka.net> 
 
 ##### MODULY
 import tkinter as tk
