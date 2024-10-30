@@ -92,19 +92,20 @@ class KeyboardKing(tk.Tk):
         about_window.title("O hře")
         about_window.geometry("300x400")
 
-        # Načtení obrázku
-        foto = tk.PhotoImage(file='foto.jpg')
+        # Načtení obrázku a úprava velikosti
+        image = tk.PhotoImage(file='foto.png')
+        image = image.subsample(15, 15)  # Zmenšení obrázku na polovinu
 
         # Přidání obrázku do okna
-        img_label = tk.Label(about_window, image=foto)
-        img_label.image = foto  # Udržení reference na obrázek
+        img_label = tk.Label(about_window, image=image)
+        img_label.image = image  # Udržení reference na obrázek
         img_label.pack(pady=10)
 
         # Text s informacemi o hře
         about_text = (
-            "Verze: 1.0\n"
-            "Autor: Kryštof Maxera, Jakub Skalka, Barbora Bočkayová\n"
-            "Email: váš_email@example.com"
+            "Verze: 1.9.42\n"
+            "Autor: Jakub Skalka, Kryštof Maxera, Barbora Bočkayová\n"
+            "Email: skalkaj@jirovcovka.net\nmaxerak@jirovcovka.net\nbockayovab@jirovcovka.net"
         )
         text_label = tk.Label(about_window, text=about_text, justify="center")
         text_label.pack(pady=10)
