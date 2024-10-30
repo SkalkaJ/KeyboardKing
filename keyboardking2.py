@@ -10,7 +10,8 @@ class KeyboardKing(tk.Tk):
 
         # Inicializace proměnných
         self.score = 0
-        self.rounds_left = 10
+        self.total_rounds = 5  # Celkový počet kol nastaven na 5
+        self.rounds_left = self.total_rounds
         self.speed = 1000  # počáteční rychlost pádu kruhu v ms
         self.current_rect = None
         self.game_running = False
@@ -69,7 +70,7 @@ class KeyboardKing(tk.Tk):
             "1. Stiskněte 'Start' pro spuštění hry.\n"
             "2. Po rozsvícení obdélníku stiskněte odpovídající klávesu (S, D, F, J, K, L).\n"
             "3. Pokud stisknete špatnou klávesu, v kole již nemůžete pokračovat.\n"
-            "4. Hra má 10 kol a rychlost se postupně zvyšuje.\n"
+            "4. Hra má 5 kol a rychlost se postupně zvyšuje.\n"
             "5. Po skončení hry se zobrazí vaše celkové skóre."
         )
         messagebox.showinfo("Nápověda", help_text)
@@ -87,14 +88,13 @@ class KeyboardKing(tk.Tk):
         if not self.game_running:
             self.game_running = True
             self.score = 0
-            self.rounds_left = 10
+            self.rounds_left = self.total_rounds  # Reset počtu kol na začátku hry
             self.speed = 1000
             self.update_labels()
             self.next_round()
 
     def next_round(self):
         if self.rounds_left > 0:
-            self.rounds_left -= 1
             self.update_labels()
             self.circle_reached_bottom = False
             self.canvas.delete("circle")
@@ -130,6 +130,7 @@ class KeyboardKing(tk.Tk):
                 # Reset barvy obdélníku
                 self.canvas.itemconfig(self.current_rect, fill="grey")
                 self.speed = max(200, self.speed - 80)
+                self.rounds_left -= 1  # Snížení počtu kol zde
                 self.next_round()
         else:
             self.canvas.delete("circle")
