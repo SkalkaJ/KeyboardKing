@@ -1,6 +1,13 @@
 #hafhaf
+<<<<<<< HEAD
 #Mňau
 #Mňaus
+=======
+#Mňaus
+import tkinter as tk
+from tkinter import messagebox
+import random
+>>>>>>> origin/main
 
 class KeyboardKing(tk.Tk):
     def __init__(self):
