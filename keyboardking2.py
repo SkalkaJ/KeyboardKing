@@ -1,3 +1,4 @@
+#Mňau
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -78,8 +79,8 @@ class KeyboardKing(tk.Tk):
     def show_about(self):
         about_text = (
             "O hře:\n\n"
-            "Verze: 1.0\n"
-            "Autor: Vaše Jméno\n"
+            "Verze: 1.8\n"
+            "Autor: Jakub Skalka\n"
             "Email: váš_email@example.com"
         )
         messagebox.showinfo("O hře", about_text)
