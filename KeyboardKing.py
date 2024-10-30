@@ -95,7 +95,7 @@ class KeyboardKing(tk.Tk):
 
         # Načtení obrázku a úprava velikosti
         image = tk.PhotoImage(file='foto.png')
-        image = image.subsample(15, 15)  # Zmenšení obrázku na polovinu
+        image = image.subsample(17, 17)  # Zmenšení obrázku na polovinu
 
         # Přidání obrázku do okna
         img_label = tk.Label(about_window, image=image)
