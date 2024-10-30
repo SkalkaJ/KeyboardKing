@@ -1,5 +1,7 @@
 # program: reakcnidoba.py - hra na měření reakční doby
 # autor: Jakub Skalka 7.E <skalkaj@jirovcovka.net>
+#        Kryštof Maxera 7.E
+#        Barbora Bočkayová 7.E
 
 ##### MODULY
 import tkinter as tk
