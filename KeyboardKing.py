@@ -16,6 +16,10 @@ class KeyboardKing(tk.Tk):
         self.title("Keyboard King")
         self.geometry("800x600")
 
+        # Nastavení ikony aplikace
+        icon = tk.PhotoImage(file='icon.png')
+        self.iconphoto(False, icon)
+
         # Inicializace proměnných
         self.score = 0
         self.total_rounds = 5  # Celkový počet kol nastaven na 5
@@ -84,13 +88,26 @@ class KeyboardKing(tk.Tk):
         messagebox.showinfo("Nápověda", help_text)
 
     def show_about(self):
+        about_window = tk.Toplevel(self)
+        about_window.title("O hře")
+        about_window.geometry("300x400")
+
+        # Načtení obrázku
+        foto = tk.PhotoImage(file='foto.jpg')
+
+        # Přidání obrázku do okna
+        img_label = tk.Label(about_window, image=foto)
+        img_label.image = foto  # Udržení reference na obrázek
+        img_label.pack(pady=10)
+
+        # Text s informacemi o hře
         about_text = (
-            "O hře:\n\n"
-            "Verze: 1.8\n"
-            "Autor: Jakub Skalka, Kryštof Maxera, Barbora Bočkayová\n"
+            "Verze: 1.0\n"
+            "Autor: Kryštof Maxera, Jakub Skalka, Barbora Bočkayová\n"
             "Email: váš_email@example.com"
         )
-        messagebox.showinfo("O hře", about_text)
+        text_label = tk.Label(about_window, text=about_text, justify="center")
+        text_label.pack(pady=10)
 
     def start_game(self):
         if not self.game_running:
