@@ -15,12 +15,8 @@ class KeyboardKing(tk.Tk):
         super().__init__()
         self.title("Keyboard King")
         self.geometry("800x600")
-
-
-
         self.create_menu()
         self.create_canvas()
-        #self.show_rules()
 
     def create_menu(self):
         menu = tk.Menu(self)
@@ -29,13 +25,17 @@ class KeyboardKing(tk.Tk):
         menu.add_cascade(label="Game", menu=game_menu)
         game_menu.add_command(label="Start", command=self.start_game) #napsat start_game
         game_menu.add_command(label="End", command=self.quit)
-
+    menu.add_cascade(label="Help", menu=help_menu)
         #zobrazení pravidel?
 
     def create_canvas(self):
         self.canvas = rk.canvas(self, width=800, height=500, bg="white")
 
-    #def start_game(self):
+
+    def start_game(self):
+        
+
+
         
 
 if __name__ == "__main__":
