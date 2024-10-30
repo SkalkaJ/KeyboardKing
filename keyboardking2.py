@@ -13,8 +13,9 @@ class KeyboardKing(tk.Tk):
         self.rounds_left = 10
         self.speed = 1000  # počáteční rychlost pádu kruhu v ms
         self.current_rect = None
-        self.rect_pressed = False
         self.game_running = False
+        self.circle_reached_bottom = False
+        self.can_press = True  # Flag pro kontrolu stisků kláves
 
         # Vytvoření GUI
         self.create_menu()
@@ -46,7 +47,10 @@ class KeyboardKing(tk.Tk):
         self.keys = ['S', 'D', 'F', 'J', 'K', 'L']
         x_start = 50
         for i in range(6):
-            rect = self.canvas.create_rectangle(x_start, 450, x_start + 100, 500, fill="grey", tags=self.keys[i])
+            rect = self.canvas.create_rectangle(
+                x_start, 450, x_start + 100, 500,
+                fill="grey", tags=self.keys[i]
+            )
             self.rects.append(rect)
             x_start += 120
 
@@ -64,7 +68,7 @@ class KeyboardKing(tk.Tk):
             "Nápověda:\n\n"
             "1. Stiskněte 'Start' pro spuštění hry.\n"
             "2. Po rozsvícení obdélníku stiskněte odpovídající klávesu (S, D, F, J, K, L).\n"
-            "3. Získejte body za každé správné stisknutí klávesy během jednoho kola.\n"
+            "3. Pokud stisknete špatnou klávesu, v kole již nemůžete pokračovat.\n"
             "4. Hra má 10 kol a rychlost se postupně zvyšuje.\n"
             "5. Po skončení hry se zobrazí vaše celkové skóre."
         )
@@ -92,11 +96,11 @@ class KeyboardKing(tk.Tk):
         if self.rounds_left > 0:
             self.rounds_left -= 1
             self.update_labels()
-            self.rect_pressed = False
             self.circle_reached_bottom = False
             self.canvas.delete("circle")
             self.highlight_rectangle()
             self.drop_circle()
+            self.can_press = True  # Umožní stisk kláves v novém kole
         else:
             self.end_game()
 
@@ -107,7 +111,6 @@ class KeyboardKing(tk.Tk):
         # Náhodně vybereme obdélník k rozsvícení
         self.current_rect = random.choice(self.rects)
         self.canvas.itemconfig(self.current_rect, fill="yellow")
-        self.rect_pressed = False
 
     def drop_circle(self):
         # Vytvoření kruhu na vrcholu canvasu
@@ -124,7 +127,7 @@ class KeyboardKing(tk.Tk):
                 # Kruh dosáhl spodní části - konec kola
                 self.circle_reached_bottom = True
                 self.canvas.delete("circle")
-                # Reset obdélníku barvy
+                # Reset barvy obdélníku
                 self.canvas.itemconfig(self.current_rect, fill="grey")
                 self.speed = max(200, self.speed - 80)
                 self.next_round()
@@ -132,19 +135,18 @@ class KeyboardKing(tk.Tk):
             self.canvas.delete("circle")
 
     def key_pressed(self, event):
-        if self.game_running and not self.circle_reached_bottom:
+        if self.game_running and not self.circle_reached_bottom and self.can_press:
             key = event.keysym.upper()
             rect_tag = self.canvas.gettags(self.current_rect)[0]
-            if not self.rect_pressed:
-                if key == rect_tag:
-                    self.score += 1
-                    self.canvas.itemconfig(self.current_rect, fill="green")
-                    self.update_labels()
-                else:
-                    self.canvas.itemconfig(self.current_rect, fill="black")
-                self.rect_pressed = True
-                # Po každém stisknutí zvýrazníme nový obdélník
+            if key == rect_tag:
+                self.score += 1
+                self.canvas.itemconfig(self.current_rect, fill="green")
+                self.update_labels()
+                # Po správném stisknutí zvýrazníme nový obdélník
                 self.highlight_rectangle()
+            else:
+                self.canvas.itemconfig(self.current_rect, fill="black")
+                self.can_press = False  # Zamezí dalším stiskům v tomto kole
 
     def update_labels(self):
         self.score_label.config(text=f"Skóre: {self.score}")
