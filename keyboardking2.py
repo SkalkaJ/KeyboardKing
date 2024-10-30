@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+#hafhaf
+=======
 #Mňau
+>>>>>>> 9ce5fc8fae6318d6a3f77dd2a47ce2e032877a70
 import tkinter as tk
 from tkinter import messagebox
 import random
