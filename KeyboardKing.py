@@ -1,4 +1,4 @@
-### Hra Keyboard King,která testuje rychlost a přesnost stisku kláves. Po spuštění hry se na obrazovce zobrazí 6 obdélníků,
+### Hra Keyboard King, která testuje rychlost a přesnost stisku kláves. Po spuštění hry se na obrazovce zobrazí 6 obdélníků,
 # každý s jednou klávesou (S, D, F, J, K, L). Obdélníky se náhodně rozsvítí a hráč musí stisknout odpovídající klávesu, než kruh dosáhne
 # spodní části obrazovky. Po každém kole se rychlost zvyšuje a hráč musí stisknout správnou klávesu rychleji.
 # Hra má 5 kol a po skončení se zobrazí celkové skóre.
@@ -95,7 +95,7 @@ class KeyboardKing(tk.Tk):
 
         # Načtení obrázku a úprava velikosti
         image = tk.PhotoImage(file='foto.png')
-        image = image.subsample(15, 15)  # Zmenšení obrázku na polovinu
+        image = image.subsample(17, 17)  # Zmenšení obrázku na polovinu
 
         # Přidání obrázku do okna
         img_label = tk.Label(about_window, image=image)
