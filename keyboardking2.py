@@ -1,8 +1,6 @@
 #hafhaf
 #Mňau
-import tkinter as tk
-from tkinter import messagebox
-import random
+#Mňaus
 
 class KeyboardKing(tk.Tk):
     def __init__(self):
