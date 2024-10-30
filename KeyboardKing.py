@@ -40,13 +40,13 @@ class KeyboardKing(tk.Tk):
         menu = tk.Menu(self)
         self.config(menu=menu)
 
-        # Menu Hra
+        # Menu Hra a nastavení klikátek v menu
         game_menu = tk.Menu(menu, tearoff=0)
         menu.add_cascade(label="Hra", menu=game_menu)
         game_menu.add_command(label="Start", command=self.start_game)
         game_menu.add_command(label="Konec", command=self.quit)
 
-        # Menu Help
+        # Menu Help a naastavení klikátek v menu
         help_menu = tk.Menu(menu, tearoff=0)
         menu.add_cascade(label="Help", menu=help_menu)
         help_menu.add_command(label="Nápověda", command=self.show_help)
@@ -58,7 +58,7 @@ class KeyboardKing(tk.Tk):
 
         # Vytvoření obdélníků a přiřazení kláves
         self.rects = []
-        self.keys = ['S', 'D', 'F', 'J', 'K', 'L']
+        self.keys = ['S', 'D', 'F', 'J', 'K', 'L'] # Klávesy pro obdélníky
         x_start = 50
         for i in range(6):
             rect = self.canvas.create_rectangle(
@@ -77,7 +77,7 @@ class KeyboardKing(tk.Tk):
         self.rounds_label = tk.Label(self, text=f"Kola: {self.rounds_left}")
         self.rounds_label.pack(side=tk.RIGHT, padx=20)
 
-    def show_help(self):
+    def show_help(self): # Text nápovědy
         help_text = (
             "Nápověda:\n\n"
             "1. Stiskněte 'Start' pro spuštění hry.\n"
@@ -188,6 +188,7 @@ class KeyboardKing(tk.Tk):
             self.canvas.itemconfig(rect, fill="grey")
         self.canvas.delete("circle")
 
+# Spuštění hry při spuštění skriptu
 if __name__ == "__main__":
     game = KeyboardKing()
     game.mainloop()
