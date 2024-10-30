@@ -9,6 +9,9 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 import random
 import time
+import pygame
+
+
 
 ##### Deklarace tříd
 class KeyboardKing(tk.Tk):
@@ -119,6 +122,10 @@ class KeyboardKing(tk.Tk):
             self.speed = 1000
             self.update_labels()
             self.next_round()
+
+            pygame.mixer.init() # Inicializace zvukového modulu
+            pygame.mixer.music.load("shreksophone-original.mp3")
+            pygame.mixer.music.play(-1)
 
     def next_round(self):
         if self.rounds_left > 0:
