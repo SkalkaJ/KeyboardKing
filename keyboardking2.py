@@ -140,11 +140,11 @@ class KeyboardKing(tk.Tk):
                     self.score += 1
                     self.canvas.itemconfig(self.current_rect, fill="green")
                     self.update_labels()
-                    # Po správném stisknutí zvýrazníme nový obdélník
-                    self.highlight_rectangle()
                 else:
                     self.canvas.itemconfig(self.current_rect, fill="black")
                 self.rect_pressed = True
+                # Po každém stisknutí zvýrazníme nový obdélník
+                self.highlight_rectangle()
 
     def update_labels(self):
         self.score_label.config(text=f"Skóre: {self.score}")
